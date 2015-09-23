@@ -1,11 +1,17 @@
 ﻿--
 -- Create Table    : 'Telefonummer'   
--- Nummer          :  
--- Type            :  
 -- NummerID        :  
+-- Type            :  
+-- Nummer          :  
+-- PersonID        :  (references Person.PersonID)
 --
 CREATE TABLE Telefonummer (
-    Nummer         INT NOT NULL,
+    NummerID       INT IDENTITY NOT NULL,
     Type           CHAR(200) NOT NULL,
-    NummerID       INT NOT NULL,
-CONSTRAINT pk_Telefonummer PRIMARY KEY CLUSTERED (NummerID))
+    Nummer         INT NOT NULL,
+    PersonID       INT NOT NULL,
+CONSTRAINT pk_Telefonummer PRIMARY KEY CLUSTERED (NummerID),
+CONSTRAINT fk_Telefonummer FOREIGN KEY (PersonID)
+    REFERENCES Person (PersonID)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
