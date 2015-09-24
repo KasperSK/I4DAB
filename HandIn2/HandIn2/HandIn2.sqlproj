@@ -66,6 +66,7 @@
     <Build Include="dbo\Tables\Telefonummer.sql" />
     <Build Include="dbo\Tables\EkstraAddresse.sql" />
     <Build Include="dbo\Tables\FolkeRegisterAddresse.sql" />
+    <Build Include="Views.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.Inserts.sql" />

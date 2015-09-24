@@ -9,3 +9,8 @@
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
+IF OBJECT_ID('Person', 'U') IS NOT NULL
+DELETE FROM Person WHERE PersonID = PersonID;
+
+IF OBJECT_ID('FolkeRegisterAddresse', 'U') IS NOT NULL
+DELETE FROM Person WHERE FolkeAID = FolkeAID;
