@@ -1,24 +1,5 @@
-ï»¿/*
-Post-Deployment Script Template							
---------------------------------------------------------------------------------------
- This file contains SQL statements that will be appended to the build script.		
- Use SQLCMD syntax to include a file in the post-deployment script.			
- Example:      :r .\myfile.sql								
- Use SQLCMD syntax to reference a variable in the post-deployment script.		
- Example:      :setvar TableName MyTable							
-               SELECT * FROM [$(TableName)]					
---------------------------------------------------------------------------------------
-*/
-
---INSERT INTO Person (Fornavn, Mellemnavn, Efternavn, Forhold)
---Values('Kalle','RÃ¸nlev','MÃ¸ller','Work')
-
---BEGIN TRANSACTION
---   DECLARE @DataID int;
---   INSERT INTO Person (Fornavn, Mellemnavn, Efternavn, Forhold) VALUES ('Kalle','RÃ¸nlev','MÃ¸ller','Work');
---   SELECT @DataID = scope_identity();
---   INSERT INTO FolkeRegisterAddresse (Vejnavn, Husnummer, Postnummer, Bynavn, PersonID) VALUES ("fisk","hat",8210,"Aarhus", @DataID);
---COMMIT
+USE E15I4DABH2Gr7
+GO
 
 DECLARE @lastadr int
 DECLARE @lastperson int
@@ -27,7 +8,7 @@ DECLARE @lastperson int
 INSERT INTO FolkeRegisterAddresse (Vejnavn, Husnummer, Postnummer, Bynavn) VALUES ('fiskVej','hat',8210,'Aarhus V')
 SELECT @lastadr = SCOPE_IDENTITY()
 
-INSERT INTO Person (Fornavn, Mellemnavn, Efternavn, Forhold, FolkeAID) Values('Kalle','RÃ¸nlev','MÃ¸ller','Work', @lastadr)
+INSERT INTO Person (Fornavn, Mellemnavn, Efternavn, Forhold, FolkeAID) Values('Kalle','Rønlev','Møller','Work', @lastadr)
 SELECT @lastperson = SCOPE_IDENTITY()
 UPDATE FolkeRegisterAddresse SET PersonID=@lastperson WHERE FolkeAID = @lastadr
 
@@ -100,8 +81,8 @@ SELECT @lastperson = SCOPE_IDENTITY()
 UPDATE FolkeRegisterAddresse SET PersonID=@lastperson WHERE FolkeAID = @lastadr
 
 INSERT INTO Telefonummer (Type, Nummer, PersonID) Values('Privat', 11122233, @lastperson)
-INSERT INTO EkstraAddresse (Vejnavn, Husnummer, Postnummer, Bynavn, Type, PersonID) Values('Ã†bleVej', '666', 7620, 'Paris', 'Arbejde', @lastperson) 
-INSERT INTO EkstraAddresse (Vejnavn, Husnummer, Postnummer, Bynavn, Type, PersonID) Values('PÃ¦reVej', '666', 7620, 'Rom', 'Sommerhus', @lastperson) 
+INSERT INTO EkstraAddresse (Vejnavn, Husnummer, Postnummer, Bynavn, Type, PersonID) Values('ÆbleVej', '666', 7620, 'Paris', 'Arbejde', @lastperson) 
+INSERT INTO EkstraAddresse (Vejnavn, Husnummer, Postnummer, Bynavn, Type, PersonID) Values('PæreVej', '666', 7620, 'Rom', 'Sommerhus', @lastperson) 
 INSERT INTO EkstraAddresse (Vejnavn, Husnummer, Postnummer, Bynavn, Type, PersonID) Values('MuskatVej', '666', 3000, 'Snested', 'PartyHOUSE', @lastperson) 
 
 -- Eight
@@ -142,7 +123,7 @@ INSERT INTO Telefonummer (Type, Nummer, PersonID) Values('Privat', 903232423, @l
 INSERT INTO Telefonummer (Type, Nummer, PersonID) Values('Mobil', 25459873, @lastperson)
 
 -- Eleven FOR DELETION!!!
-INSERT INTO FolkeRegisterAddresse (Vejnavn, Husnummer, Postnummer, Bynavn) VALUES ('TjÃ¸rnVej','220E', 8270,'HÃ¸jbjerg')
+INSERT INTO FolkeRegisterAddresse (Vejnavn, Husnummer, Postnummer, Bynavn) VALUES ('TjørnVej','220E', 8270,'Højbjerg')
 SELECT @lastadr = SCOPE_IDENTITY()
 
 INSERT INTO Person (Fornavn, Mellemnavn, Efternavn, Forhold, FolkeAID) Values('Loki','Mot','Nudd','Familie', @lastadr)
@@ -150,18 +131,7 @@ SELECT @lastperson = SCOPE_IDENTITY()
 UPDATE FolkeRegisterAddresse SET PersonID=@lastperson WHERE FolkeAID = @lastadr
 
 INSERT INTO Telefonummer (Type, Nummer, PersonID) Values('Privat', 11122233, @lastperson)
-INSERT INTO EkstraAddresse (Vejnavn, Husnummer, Postnummer, Bynavn, Type, PersonID) Values('Ã†bleVej', '66C', 7620, 'Paris', 'Arbejde', @lastperson) 
-INSERT INTO EkstraAddresse (Vejnavn, Husnummer, Postnummer, Bynavn, Type, PersonID) Values('PÃ¦reVej', '66V', 7620, 'Rom', 'Sommerhus', @lastperson) 
+INSERT INTO EkstraAddresse (Vejnavn, Husnummer, Postnummer, Bynavn, Type, PersonID) Values('ÆbleVej', '66C', 7620, 'Paris', 'Arbejde', @lastperson) 
+INSERT INTO EkstraAddresse (Vejnavn, Husnummer, Postnummer, Bynavn, Type, PersonID) Values('PæreVej', '66V', 7620, 'Rom', 'Sommerhus', @lastperson) 
 INSERT INTO EkstraAddresse (Vejnavn, Husnummer, Postnummer, Bynavn, Type, PersonID) Values('MuskatVej', '66A', 7752, 'Snedsted', 'PartyHOUSE', @lastperson) 
-
--- DELETE FROM Person WHERE PersonID = @lastperson;
-
-DELETE FROM Person WHERE Person.Fornavn = 'Line' AND Person.Efternavn = 'Smed'
-
-DECLARE @peter int
-SELECT @peter = PersonID FROM Person WHERE Fornavn = 'Peter' AND Efternavn = 'Pedersen'
-UPDATE Telefonummer SET Nummer='80808080' WHERE Telefonummer.PersonID = @peter
-
-SELECT Person.Efternavn, Person.Fornavn, FolkeRegisterAddresse.Bynavn FROM Person, FolkeRegisterAddresse WHERE Person.FolkeAID = FolkeRegisterAddresse.FolkeAID
-SELECT Telefonummer.Nummer FROM Telefonummer INNER JOIN Person ON Telefonummer.PersonID = Person.PersonID WHERE Person.Fornavn = 'Merkur'
-SELECT Person.Efternavn, Person.Fornavn FROM Person INNER JOIN Telefonummer ON Telefonummer.PersonID = Person.PersonID WHERE Telefonummer.Nummer = 90320423
+GO

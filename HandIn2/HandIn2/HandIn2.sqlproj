@@ -8,7 +8,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{4b47b2c5-10ec-4e29-ac0b-cade902ca577}</ProjectGuid>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql120DatabaseSchemaProvider</DSP>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql110DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
@@ -67,11 +67,15 @@
     <Build Include="dbo\Tables\EkstraAddresse.sql" />
     <Build Include="dbo\Tables\FolkeRegisterAddresse.sql" />
     <Build Include="Views.sql" />
+    <Build Include="KartotekInsertUpdateDelete.sql" />
+    <None Include="InsertKartotek.sql" />
+    <None Include="OpretKartotek.sql" />
+    <None Include="UpdateKartotek.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.Inserts.sql" />
   </ItemGroup>
   <ItemGroup>
-    <PreDeploy Include="Script.PreDeployment1.sql" />
+    <None Include="DeleteAndSelect.sql" />
   </ItemGroup>
 </Project>

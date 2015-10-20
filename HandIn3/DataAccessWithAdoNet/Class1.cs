@@ -8,6 +8,36 @@ using System.Data.SqlClient;
 
 namespace DataAccessWithAdoNet
 {
+    public class PersonModel
+    {
+        Guid PersonId { get; set; }
+        string Fornavn { get; set; }
+        string Mellemnavn { get; set; }
+        string Efternavn { get; set; }
+        string Type { get; set; }
+
+        private List<EkstraAddresse> EkstraAddresse { get; set; }
+        private List<Telefon> Telefon { get; set; } 
+    }
+
+    public class EkstraAddresse
+    {
+        int AddresseID { get; set; }
+        string Vejnavn { get; set; }
+        string Husnummer { get; set; }
+
+        int PostNummer { get; set; }
+        string Bynavn { get; set; }
+        string Type { get; set; }
+
+        int PersonId { get; set; }
+    }
+
+    public class Telefon
+    {
+        
+    }
+
     public class AddresseKartotekDal
     {
         private string _connectionString;
@@ -22,8 +52,6 @@ namespace DataAccessWithAdoNet
 
         public void GetAllPersons()
         {
-
-
             try
             {
                 AKDC.Open();
@@ -33,7 +61,7 @@ namespace DataAccessWithAdoNet
 
                 while (_reader.Read())
                 {
-                    Console.Write(_reader[0]);
+                    Console.WriteLine(_reader[0]);
                     Console.Write(_reader[1]);
                     Console.Write(_reader[2]);
                     Console.Write(_reader[3]);

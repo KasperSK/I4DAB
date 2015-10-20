@@ -14,7 +14,6 @@ CREATE TABLE Person (
     Forhold        CHAR(200) NOT NULL,
 	FolkeAID	   INT NOT NULL,
 CONSTRAINT pk_Person PRIMARY KEY CLUSTERED (PersonID),
-CONSTRAINT fk_FolkeRegisterA
-	FOREIGN KEY (FolkeAID)
+CONSTRAINT fk_FolkeRegisterA FOREIGN KEY (FolkeAID)
     REFERENCES FolkeRegisterAddresse (FolkeAID)
 )
