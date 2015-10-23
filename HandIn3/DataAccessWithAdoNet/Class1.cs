@@ -12,17 +12,8 @@ namespace DataAccessWithAdoNet
     {
         public Person()
         {
-            
-        }
-        public Person(int id, string fornavn, string mellemnavn, string efternavn, string forhold, List<EkstraAddresse> ekstraAddresser, List<Telefon> telefoner )
-        {
-            Id = id;
-            Fornavn = fornavn;
-            Mellemnavn = mellemnavn;
-            Efternavn = efternavn;
-            Forhold = forhold;
-            PersonAddresser = personaddresser;
-            Telefoner = telefoner;
+            EkstraAddresser = new List<EkstraAddresse>();
+            Telefoner = new List<Telefon>();
         }
         public int Id { get; set; }
         public string Fornavn { get; set; }
@@ -36,15 +27,6 @@ namespace DataAccessWithAdoNet
 
     public class EkstraAddresse
     {
-        public EkstraAddresse()
-        { }
-        public EkstraAddresse(int id, Addresse addresse, Person person, string forhold)
-        {
-            Id = id;
-            Adresse = addresse;
-            Person = person;
-            Forhold = forhold;
-        }
         public int Id { get; set; }
         public Addresse Adresse { get; set; }
         public Person Person { get; set; }
@@ -53,6 +35,10 @@ namespace DataAccessWithAdoNet
 
     public class Addresse
     {
+        public Addresse()
+        {
+            Personer = new List<EkstraAddresse>();
+        }
         public int Id { get; set; }
         public string Vejnavn { get; set; }
         public string Husnummer { get; set; }
@@ -65,6 +51,7 @@ namespace DataAccessWithAdoNet
     {
         public int Id { get; set; }
         public string Number { get; set; }
+        public string Forhold { get; set; }
         public Person Owner { get; set; }
     }
 
@@ -82,19 +69,18 @@ namespace DataAccessWithAdoNet
             _akdc.Open();
             const string commandText = @"
                                          INSERT INTO
-                                            person
-                                            (Fornavn, Mellemnavn, Efternavn, Forhold, FolkeAID)
+                                            Person
+                                            (Fornavn, Mellemnavn, Efternavn, Forhold)
                                          OUTPUT
                                             INSERTED.ID
                                          VALUES
-                                            (@Fornavn, @Mellemnavn, @Efternavn, @Forhold, @FolkeAID)
+                                            (@Fornavn, @Mellemnavn, @Efternavn, @Forhold)
                                         ";
             var cmd = new SqlCommand(commandText, _akdc);
             cmd.Parameters.AddWithValue("@Fornavn", person.Fornavn);
             cmd.Parameters.AddWithValue("@Mellemnavn", person.Mellemnavn);
             cmd.Parameters.AddWithValue("@Efternavn", person.Efternavn);
             cmd.Parameters.AddWithValue("@Forhold", person.Forhold);
-            cmd.Parameters.AddWithValue("@FolkeAID", person.FolkeregisterAddresse.Id);
             var personid = (int)cmd.ExecuteScalar();
             person.Id = personid;
             _akdc.Close();
@@ -108,15 +94,14 @@ namespace DataAccessWithAdoNet
                                             Fornavn,
                                             Mellemnavn,
                                             Efternavn,
-                                            Forhold,
-                                            FolkeAID
+                                            Forhold
                                         FROM
-                                            person
+                                            Person
                                         WHERE
-                                            PersonID = @personid
+                                            Id = @Id
                                         ";
             var cmd = new SqlCommand(commandText, _akdc);
-            cmd.Parameters.AddWithValue("@personid", personid);
+            cmd.Parameters.AddWithValue("@Id", personid);
             var reader = cmd.ExecuteReader();
             reader.Read();
             var person = new Person
@@ -125,11 +110,9 @@ namespace DataAccessWithAdoNet
                 Fornavn = reader["Fornavn"].ToString(),
                 Mellemnavn = reader["Mellemnavn"].ToString(),
                 Efternavn = reader["Efternavn"].ToString(),
-                Forhold = reader["Forhold"].ToString()
+                Forhold = reader["Forhold"].ToString(),              
             };
-            var folkeAid = (int) reader["FolkeAID"];
             _akdc.Close();
-            person.FolkeregisterAddresse = _ReadAddresse(folkeAid);
             return person;
         }
 
@@ -138,15 +121,14 @@ namespace DataAccessWithAdoNet
             _akdc.Open();
             const string commandText = @"
                                         UPDATE
-                                            person 
+                                            Person 
                                         SET
                                             Fornavn=@Fornavn,
                                             Mellemnavn=@Mellemnavn, 
                                             Efternavn=@Efternavn, 
-                                            Forhold=@Forhold,
-                                            FolkeAID=@FolkeAID
+                                            Forhold=@Forhold
                                         WHERE 
-                                            PersonID = @Id
+                                            Id = @Id
                                         ";
 
             var cmd = new SqlCommand(commandText, _akdc);
@@ -154,7 +136,6 @@ namespace DataAccessWithAdoNet
             cmd.Parameters.AddWithValue("@Mellemnavn", person.Mellemnavn);
             cmd.Parameters.AddWithValue("@Efternavn", person.Efternavn);
             cmd.Parameters.AddWithValue("@Forhold", person.Forhold);
-            cmd.Parameters.AddWithValue("@FolkeAID", person.FolkeregisterAddresse.Id);
             cmd.Parameters.AddWithValue("@Id", person.Id);
             cmd.ExecuteNonQuery();
             _akdc.Close();
@@ -165,9 +146,9 @@ namespace DataAccessWithAdoNet
             _akdc.Open();
             const string commandText = @"
                                         DELETE FROM
-                                            person
+                                            Person
                                         WHERE 
-                                            PersonID = @Id
+                                            Id = @Id
                                         ";
 
             var cmd = new SqlCommand(commandText, _akdc);
@@ -211,10 +192,10 @@ namespace DataAccessWithAdoNet
                                         FROM
                                             Addresse
                                         WHERE
-                                            AddresseID = @addresseid
+                                            Id = @Id
                                         ";
             var cmd = new SqlCommand(commandText, _akdc);
-            cmd.Parameters.AddWithValue("@addresseid", addresseid);
+            cmd.Parameters.AddWithValue("@Id", addresseid);
             var reader = cmd.ExecuteReader();
             reader.Read();
             var addresse = new Addresse
@@ -223,7 +204,7 @@ namespace DataAccessWithAdoNet
                 Vejnavn = reader["Vejnavn"].ToString(),
                 Husnummer = reader["Husnummer"].ToString(),
                 PostNummer = (int) reader["Postnummer"],
-                Bynavn = reader["Bynavn"].ToString()
+                Bynavn = reader["Bynavn"].ToString(),
             };
             _akdc.Close();
             return addresse;
@@ -241,7 +222,7 @@ namespace DataAccessWithAdoNet
                                             Postnummer=@Postnummer,
                                             Bynavn=@Bynavn
                                         WHERE 
-                                            AddresseID = @Id
+                                            Id = @Id
                                         ";
 
             var cmd = new SqlCommand(commandText, _akdc);
@@ -261,7 +242,7 @@ namespace DataAccessWithAdoNet
                                         DELETE FROM
                                             Addresse
                                         WHERE 
-                                            AddresseID = @Id
+                                            Id = @Id
                                         ";
             var cmd = new SqlCommand(commandText, _akdc);
             cmd.Parameters.AddWithValue("@Id", addresse.Id);
@@ -271,21 +252,21 @@ namespace DataAccessWithAdoNet
 
 
 
-
-        public void CreateTelefon(Telefon telefon)
+        public void CreateTelefon(Telefon telefon, Person person)
         {
             _akdc.Open();
             const string commandText = @"INSERT INTO
-                                            Telefon
-                                            (Number)
+                                            Telefonnummer
+                                            (Nummer, Forhold, PersonID)
                                         OUTPUT
                                             INSERTED.ID
                                         VALUES
-                                            (@Number)";
+                                            (@Nummer, @Forhold, @PersonID)";
             var cmd = new SqlCommand(commandText, _akdc);
-            cmd.Parameters.AddWithValue("@Number", telefon.Number);
-            cmd.Parameters.AddWithValue("@PersonID", telefon.Owner.Id);
-            var id = (int)cmd.ExecuteScalar();
+            cmd.Parameters.AddWithValue("@Nummer", telefon.Number);
+            cmd.Parameters.AddWithValue("@Forhold", telefon.Forhold);
+            cmd.Parameters.AddWithValue("@PersonID", person.Id);
+            var id = (int) cmd.ExecuteScalar();
             telefon.Id = id;
             _akdc.Close();
         }
@@ -295,11 +276,11 @@ namespace DataAccessWithAdoNet
             _akdc.Open();
             const string commandText = @"
                                         SELECT
-                                            Number
+                                            Nummer, Forhold
                                         FROM
-                                            Telefon
+                                            Telefonnummer
                                         WHERE
-                                            TelefonID = @Id
+                                            Id = @Id
                                         ";
             var cmd = new SqlCommand(commandText, _akdc);
             cmd.Parameters.AddWithValue("@Id", telefonid);
@@ -308,7 +289,8 @@ namespace DataAccessWithAdoNet
             var telefon = new Telefon
             {
                 Id = telefonid,
-                Number = reader["Number"].ToString(),
+                Number = reader["Nummer"].ToString(),
+                Forhold = reader["Forhold"].ToString(),
             };
             _akdc.Close();
             return telefon;
@@ -321,12 +303,14 @@ namespace DataAccessWithAdoNet
                                         UPDATE
                                             Telefon 
                                         SET
-                                            Number=@Number,
+                                            Nummer=@Nummer,
+                                            Forhold=@Forhold
                                         WHERE 
-                                            TelefonID = @Id
+                                            Id = @Id
                                         ";
             var cmd = new SqlCommand(commandText, _akdc);
-            cmd.Parameters.AddWithValue("@Number", telefon.Number);
+            cmd.Parameters.AddWithValue("@Nummer", telefon.Number);
+            cmd.Parameters.AddWithValue("@Forhold", telefon.Forhold);
             cmd.Parameters.AddWithValue("@Id", telefon.Id);
             cmd.ExecuteNonQuery();
             _akdc.Close();
@@ -339,14 +323,13 @@ namespace DataAccessWithAdoNet
                                         DELETE FROM
                                             Telefon
                                         WHERE 
-                                            TelefonID = @Id
+                                            Id = @Id
                                         ";
             var cmd = new SqlCommand(commandText, _akdc);
             cmd.Parameters.AddWithValue("@Id", telefon.Id);
             cmd.ExecuteNonQuery();
             _akdc.Close();
         }
-
 
 
 
@@ -396,42 +379,86 @@ namespace DataAccessWithAdoNet
             _akdc.Close();
         }
 
-
-
-        public void ConnectPhone(Telefon telefon, Person person)
+        public List<EkstraAddresse> ReadEkstraAddressesFromPerson(Person person)
         {
+            var dt = new DataTable();
+            var ekstraAddresser = new List<EkstraAddresse>();
             _akdc.Open();
             const string commandText = @"
-                                        UPDATE
-                                            Telefon 
-                                        SET
-                                            Number=@Number,
-                                        WHERE 
-                                            TelefonID = @Id
+                                        SELECT
+                                            AddresseID, Forhold, Id
+                                        FROM
+                                            EkstraAddresse
+                                        WHERE
+                                            PersonID = @PersonID
                                         ";
             var cmd = new SqlCommand(commandText, _akdc);
-            cmd.Parameters.AddWithValue("@Number", telefon.Number);
-            cmd.Parameters.AddWithValue("@Id", telefon.Id);
-            cmd.ExecuteNonQuery();
+            cmd.Parameters.AddWithValue("@PersonID", person.Id);
+            var reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                dt.Load(reader);
+            }
             _akdc.Close();
-        }
 
-        public void DisconnectPhone(Telefon telefon)
+            foreach (DataRow row in dt.Rows)
+            {
+                var ekstraAddresse = new EkstraAddresse()
+                {
+                    Id = (int)row["Id"],
+                    Adresse = ReadAddresse((int)row["AddresseID"]),
+                    Person = person,
+                    Forhold = row["Forhold"].ToString(),
+                };
+                ekstraAddresser.Add(ekstraAddresse);
+            }
+
+            return ekstraAddresser;
+        } 
+
+
+        public List<Telefon> ReadTelefonerFromPerson(Person person)
         {
-            
-        }
+            var dt = new DataTable();
+            var telefoner = new List<Telefon>();
+            _akdc.Open();
+            const string commandText = @"
+                                        SELECT
+                                            Id
+                                        FROM
+                                            Telefonnummer
+                                        WHERE
+                                            PersonID = @PersonID
+                                        ";
+            var cmd = new SqlCommand(commandText, _akdc);
+            cmd.Parameters.AddWithValue("@PersonID", person.Id);
+            var reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                dt.Load(reader);
+            }
+            _akdc.Close();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                telefoner.Add(ReadTelefon((int)row["Id"]));
+            }
+
+            return telefoner;
+        } 
+
+
 
         public void UpdateFolkeregisterAddresse(Person person, Addresse addresse)
         {
-            person.FolkeregisterAddresse = addresse;
             _akdc.Open();
             const string commandText = @"
                                         UPDATE
-                                            person 
+                                            Person 
                                         SET
-                                            FolkeAID=@FolkeAID,
+                                            FolkeAID=@FolkeAID
                                         WHERE 
-                                            PersonID = @Id
+                                            Id = @Id
                                         ";
             var cmd = new SqlCommand(commandText, _akdc);
             cmd.Parameters.AddWithValue("@FolkeAID", addresse.Id);
@@ -439,7 +466,28 @@ namespace DataAccessWithAdoNet
             cmd.ExecuteNonQuery();
             _akdc.Close();
         }
-        
+
+        public Addresse ReadFolkeregisterAddresse(Person person)
+        {
+            
+            _akdc.Open();
+            const string commandText = @"
+                                        SELECT
+                                            FolkeAID
+                                        FROM
+                                            Person
+                                        WHERE
+                                            Id = @Id
+                                        ";
+            var cmd = new SqlCommand(commandText, _akdc);
+            cmd.Parameters.AddWithValue("@Id", person.Id);
+
+            var addresseId = (int)cmd.ExecuteScalar();
+            _akdc.Close();
+
+            return ReadAddresse(addresseId);
+            
+        }
 
         
     }

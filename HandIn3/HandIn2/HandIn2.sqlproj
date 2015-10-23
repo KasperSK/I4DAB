@@ -63,19 +63,8 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Person.sql" />
-    <Build Include="dbo\Tables\Telefonummer.sql" />
+    <Build Include="dbo\Tables\Telefonnummer.sql" />
+    <Build Include="dbo\Tables\Addresse.sql" />
     <Build Include="dbo\Tables\EkstraAddresse.sql" />
-    <Build Include="dbo\Tables\FolkeRegisterAddresse.sql" />
-    <Build Include="Views.sql" />
-    <Build Include="KartotekInsertUpdateDelete.sql" />
-    <None Include="InsertKartotek.sql" />
-    <None Include="OpretKartotek.sql" />
-    <None Include="UpdateKartotek.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <PostDeploy Include="Script.Inserts.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="DeleteAndSelect.sql" />
   </ItemGroup>
 </Project>

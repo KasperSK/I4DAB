@@ -1,23 +1,21 @@
 ﻿--
--- Create Table    : 'EkstraAddresse'   
--- AdresseID       :  
+-- Create Table    : 'FolkeRegisterAddresse'   
+-- FolkeAId        :  
 -- Vejnavn         :  
 -- Husnummer       :  
 -- Postnummer      :  
 -- Bynavn          :  
--- Type            :  
 -- PersonID        :  (references Person.PersonID)
 --
 CREATE TABLE EkstraAddresse (
-    AdresseID      INT IDENTITY NOT NULL,
-    Vejnavn        CHAR(200) NOT NULL,
-    Husnummer      CHAR(10) NOT NULL,
-    Postnummer     INT NOT NULL,
-    Bynavn         CHAR(200) NOT NULL,
-    Type           CHAR(200) NOT NULL,
-    PersonID       INT NOT NULL,
-CONSTRAINT pk_EkstraAddresse PRIMARY KEY CLUSTERED (AdresseID),
-CONSTRAINT fk_EkstraAddresse FOREIGN KEY (PersonID)
-    REFERENCES Person (PersonID)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+    [Id]       INT IDENTITY NOT NULL,
+	PersonID	   INT NOT NULL,
+	AddresseID	   INT NOT NULL,
+	Forhold		   CHAR(200) NOT NULL,
+CONSTRAINT pk_EkstraAddresse PRIMARY KEY CLUSTERED ([Id]),
+CONSTRAINT fk_Person FOREIGN KEY (PersonID)
+    REFERENCES Person (Id),
+CONSTRAINT fk_Addresse FOREIGN KEY (AddresseID)
+    REFERENCES Addresse (Id),
+
+)
