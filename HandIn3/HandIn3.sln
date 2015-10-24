@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "HandIn2", "HandIn2\HandIn2.sqlproj", "{4B47B2C5-10EC-4E29-AC0B-CADE902CA577}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "HandInDB", "HandIn2\HandInDB.sqlproj", "{4B47B2C5-10EC-4E29-AC0B-CADE902CA577}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessWithAdoNet", "DataAccessWithAdoNet\DataAccessWithAdoNet.csproj", "{2E9BD149-0E6D-4807-84B9-928E23CE441D}"
 EndProject

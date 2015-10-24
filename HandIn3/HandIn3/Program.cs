@@ -105,7 +105,10 @@ namespace HandIn3
         }
         static void Main(string[] args)
         {
-            var myDal = new AddresseKartotekDal(@"Data Source=(localdb)\ProjectsV12;Initial Catalog=HandIn2;Integrated Security=True;Pooling=False;Connect Timeout=30");
+            var myDal =
+                new AddresseKartotekDal(
+                    "Data Source=10.29.0.29;Integrated Security=False;User ID=E15I4DABH2Gr7;Password=E15I4DABH2Gr7;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False");
+            //var myDal = new AddresseKartotekDal(@"Data Source=(localdb)\ProjectsV12;Initial Catalog=HandIn2;Integrated Security=True;Pooling=False;Connect Timeout=30");
             
             AddPerson1(myDal);
 
