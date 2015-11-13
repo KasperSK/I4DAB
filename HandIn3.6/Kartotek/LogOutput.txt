@@ -1,26 +1,26 @@
-Opened connection at 12/11/2015 09:04:40 +01:00
+Opened connection at 13/11/2015 10:31:00 +01:00
 select cast(serverproperty('EngineEdition') as int)
--- Executing at 12/11/2015 09:04:40 +01:00
--- Completed in 97 ms with result: SqlDataReader
+-- Executing at 13/11/2015 10:31:00 +01:00
+-- Completed in 42 ms with result: SqlDataReader
 
-Closed connection at 12/11/2015 09:04:40 +01:00
-Opened connection at 12/11/2015 09:04:40 +01:00
+Closed connection at 13/11/2015 10:31:00 +01:00
+Opened connection at 13/11/2015 10:31:00 +01:00
 IF db_id(N'E15I4DABH2Gr7') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'E15I4DABH2Gr7'
--- Executing at 12/11/2015 09:04:40 +01:00
--- Completed in 54 ms with result: 1
+-- Executing at 13/11/2015 10:31:00 +01:00
+-- Completed in 108 ms with result: 1
 
-Closed connection at 12/11/2015 09:04:40 +01:00
-Opened connection at 12/11/2015 09:04:40 +01:00
+Closed connection at 13/11/2015 10:31:00 +01:00
+Opened connection at 13/11/2015 10:31:00 +01:00
 
 SELECT Count(*)
 FROM INFORMATION_SCHEMA.TABLES AS t
 WHERE t.TABLE_SCHEMA + '.' + t.TABLE_NAME IN ('dbo.Addresse','dbo.EkstraAddresse','dbo.Person','dbo.Telefonnummer')
     OR t.TABLE_NAME = 'EdmMetadata'
--- Executing at 12/11/2015 09:04:40 +01:00
--- Completed in 35 ms with result: 4
+-- Executing at 13/11/2015 10:31:00 +01:00
+-- Completed in 184 ms with result: 4
 
-Closed connection at 12/11/2015 09:04:40 +01:00
-Opened connection at 12/11/2015 09:04:41 +01:00
+Closed connection at 13/11/2015 10:31:00 +01:00
+Opened connection at 13/11/2015 10:31:00 +01:00
 SELECT 
     [GroupBy1].[A1] AS [C1]
     FROM ( SELECT 
@@ -29,54 +29,96 @@ SELECT
         WHERE [Extent1].[ContextKey] = @p__linq__0
     )  AS [GroupBy1]
 -- p__linq__0: 'Kartotek.Models.Kartotek' (Type = String, Size = 4000)
--- Executing at 12/11/2015 09:04:41 +01:00
--- Failed in 44 ms with error: Invalid object name 'dbo.__MigrationHistory'.
+-- Executing at 13/11/2015 10:31:01 +01:00
+-- Failed in 93 ms with error: Invalid object name 'dbo.__MigrationHistory'.
 
-Closed connection at 12/11/2015 09:04:41 +01:00
-Opened connection at 12/11/2015 09:04:41 +01:00
+Closed connection at 13/11/2015 10:31:01 +01:00
+Opened connection at 13/11/2015 10:31:01 +01:00
 SELECT 
     [GroupBy1].[A1] AS [C1]
     FROM ( SELECT 
         COUNT(1) AS [A1]
         FROM [dbo].[__MigrationHistory] AS [Extent1]
     )  AS [GroupBy1]
--- Executing at 12/11/2015 09:04:41 +01:00
--- Failed in 175 ms with error: Invalid object name 'dbo.__MigrationHistory'.
+-- Executing at 13/11/2015 10:31:01 +01:00
+-- Failed in 29 ms with error: Invalid object name 'dbo.__MigrationHistory'.
 
-Closed connection at 12/11/2015 09:04:41 +01:00
-Opened connection at 12/11/2015 09:04:41 +01:00
+Closed connection at 13/11/2015 10:31:01 +01:00
+Opened connection at 13/11/2015 10:31:01 +01:00
 SELECT TOP (1) 
     [Extent1].[Id] AS [Id], 
     [Extent1].[ModelHash] AS [ModelHash]
     FROM [dbo].[EdmMetadata] AS [Extent1]
     ORDER BY [Extent1].[Id] DESC
--- Executing at 12/11/2015 09:04:41 +01:00
--- Failed in 72 ms with error: Invalid object name 'dbo.EdmMetadata'.
+-- Executing at 13/11/2015 10:31:01 +01:00
+-- Failed in 64 ms with error: Invalid object name 'dbo.EdmMetadata'.
 
-Closed connection at 12/11/2015 09:04:41 +01:00
-Opened connection asynchronously at 12/11/2015 09:04:41 +01:00
+Closed connection at 13/11/2015 10:31:01 +01:00
+Opened connection at 13/11/2015 10:31:01 +01:00
+SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[Fornavn] AS [Fornavn]
+    FROM [dbo].[Person] AS [Extent1]
+-- Executing at 13/11/2015 10:31:01 +01:00
+-- Completed in 67 ms with result: SqlDataReader
+
+Closed connection at 13/11/2015 10:31:01 +01:00
+Opened connection asynchronously at 13/11/2015 10:31:05 +01:00
 SELECT TOP (2) 
     [Extent1].[Id] AS [Id], 
+    [Extent1].[Fornavn] AS [Fornavn], 
+    [Extent1].[Mellemnavn] AS [Mellemnavn], 
+    [Extent1].[Efternavn] AS [Efternavn], 
+    [Extent2].[Vejnavn] AS [Vejnavn], 
     [Extent1].[Forhold] AS [Forhold], 
-    [Extent1].[Nummer] AS [Nummer], 
-    [Extent1].[PersonID] AS [PersonID]
-    FROM [dbo].[Telefonnummer] AS [Extent1]
+    [Extent1].[FolkeAID] AS [FolkeAID]
+    FROM  [dbo].[Person] AS [Extent1]
+    LEFT OUTER JOIN [dbo].[Addresse] AS [Extent2] ON [Extent1].[FolkeAID] = [Extent2].[Id]
     WHERE [Extent1].[Id] = @p__linq__0
--- p__linq__0: '1' (Type = Int32, IsNullable = false)
--- Executing asynchronously at 12/11/2015 09:04:41 +01:00
--- Completed in 18 ms with result: SqlDataReader
+-- p__linq__0: '2' (Type = Int32, IsNullable = false)
+-- Executing asynchronously at 13/11/2015 10:31:05 +01:00
+-- Completed in 11 ms with result: SqlDataReader
 
-Closed connection at 12/11/2015 09:04:41 +01:00
-Opened connection asynchronously at 12/11/2015 09:04:47 +01:00
-SELECT TOP (2) 
-    [Extent1].[Id] AS [Id], 
-    [Extent1].[Forhold] AS [Forhold], 
-    [Extent1].[Nummer] AS [Nummer], 
-    [Extent1].[PersonID] AS [PersonID]
-    FROM [dbo].[Telefonnummer] AS [Extent1]
-    WHERE [Extent1].[Id] = @p__linq__0
--- p__linq__0: '3' (Type = Int32, IsNullable = false)
--- Executing asynchronously at 12/11/2015 09:04:47 +01:00
--- Completed in 62 ms with result: SqlDataReader
+Closed connection at 13/11/2015 10:31:05 +01:00
+Opened connection asynchronously at 13/11/2015 10:31:05 +01:00
+SELECT 
+    [Project2].[Id] AS [Id], 
+    [Project2].[Fornavn] AS [Fornavn], 
+    [Project2].[Mellemnavn] AS [Mellemnavn], 
+    [Project2].[Efternavn] AS [Efternavn], 
+    [Project2].[Forhold] AS [Forhold], 
+    [Project2].[FolkeAID] AS [FolkeAID], 
+    [Project2].[C1] AS [C1], 
+    [Project2].[Id1] AS [Id1], 
+    [Project2].[Forhold1] AS [Forhold1], 
+    [Project2].[Nummer] AS [Nummer], 
+    [Project2].[PersonID] AS [PersonID]
+    FROM ( SELECT 
+        [Limit1].[Id] AS [Id], 
+        [Limit1].[Fornavn] AS [Fornavn], 
+        [Limit1].[Mellemnavn] AS [Mellemnavn], 
+        [Limit1].[Efternavn] AS [Efternavn], 
+        [Limit1].[Forhold] AS [Forhold], 
+        [Limit1].[FolkeAID] AS [FolkeAID], 
+        [Extent2].[Id] AS [Id1], 
+        [Extent2].[Forhold] AS [Forhold1], 
+        [Extent2].[Nummer] AS [Nummer], 
+        [Extent2].[PersonID] AS [PersonID], 
+        CASE WHEN ([Extent2].[Id] IS NULL) THEN CAST(NULL AS int) ELSE 1 END AS [C1]
+        FROM   (SELECT TOP (2) 
+            [Extent1].[Id] AS [Id], 
+            [Extent1].[Fornavn] AS [Fornavn], 
+            [Extent1].[Mellemnavn] AS [Mellemnavn], 
+            [Extent1].[Efternavn] AS [Efternavn], 
+            [Extent1].[Forhold] AS [Forhold], 
+            [Extent1].[FolkeAID] AS [FolkeAID]
+            FROM [dbo].[Person] AS [Extent1]
+            WHERE [Extent1].[Id] = @p__linq__0 ) AS [Limit1]
+        LEFT OUTER JOIN [dbo].[Telefonnummer] AS [Extent2] ON [Limit1].[Id] = [Extent2].[PersonID]
+    )  AS [Project2]
+    ORDER BY [Project2].[Id] ASC, [Project2].[C1] ASC
+-- p__linq__0: '2' (Type = Int32, IsNullable = false)
+-- Executing asynchronously at 13/11/2015 10:31:05 +01:00
+-- Completed in 11 ms with result: SqlDataReader
 
-Closed connection at 12/11/2015 09:04:47 +01:00
+Closed connection at 13/11/2015 10:31:05 +01:00

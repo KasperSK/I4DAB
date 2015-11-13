@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Kartotek.Models;
+using WebGrease.Css.Extensions;
 
 namespace Kartotek.Controllers
 {
@@ -42,8 +43,10 @@ namespace Kartotek.Controllers
                         EfterNavn = b.Efternavn,
                         Vejnavn = b.Addresse.Vejnavn,
                         Forhold = b.Forhold,
-                        FolkeregisterId = b.FolkeAID
+                        FolkeregisterId = b.FolkeAID,
                     }).SingleOrDefaultAsync(b => b.Id == id);
+            var tele = await db.People.Include(b => b.Telefonnummers).SingleOrDefaultAsync(b => b.Id == id);
+            tele.Telefonnummers.ForEach(n => person.TlfList.Add(n.Nummer));
             if (person == null)
             {
                 return NotFound();
