@@ -6,6 +6,7 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Kartotek.Models;
@@ -17,16 +18,28 @@ namespace Kartotek.Controllers
         private Models.Kartotek db = new Models.Kartotek();
 
         // GET: api/EkstraAddresses
-        public IQueryable<EkstraAddresse> GetEkstraAddresses()
+        public IQueryable<EkstraAddresseDto> GetEkstraAddresses()
         {
-            return db.EkstraAddresses;
+            var Eaddr = from ea in db.EkstraAddresses select new EkstraAddresseDto
+            {
+                Id = ea.Id,
+                AddresseID = ea.AddresseID,
+                PersonID = ea.PersonID
+            };
+            return Eaddr;
         }
 
         // GET: api/EkstraAddresses/5
-        [ResponseType(typeof(EkstraAddresse))]
-        public IHttpActionResult GetEkstraAddresse(int id)
+        [ResponseType(typeof(EkstraAddresseDetail))]
+        public async Task<IHttpActionResult> GetEkstraAddresse(int id)
         {
-            EkstraAddresse ekstraAddresse = db.EkstraAddresses.Find(id);
+            var ekstraAddresse = await db.EkstraAddresses.Select(ea => new EkstraAddresseDetail
+            {
+                Id = ea.Id,
+                AddresseID = ea.AddresseID,
+                PersonID = ea.PersonID,
+                Forhold = ea.Forhold
+            }).SingleOrDefaultAsync(A => A.Id == id);
             if (ekstraAddresse == null)
             {
                 return NotFound();
@@ -37,7 +50,7 @@ namespace Kartotek.Controllers
 
         // PUT: api/EkstraAddresses/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutEkstraAddresse(int id, EkstraAddresse ekstraAddresse)
+        public async Task<IHttpActionResult> PutEkstraAddresse(int id, EkstraAddresse ekstraAddresse)
         {
             if (!ModelState.IsValid)
             {
@@ -53,7 +66,7 @@ namespace Kartotek.Controllers
 
             try
             {
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -72,7 +85,7 @@ namespace Kartotek.Controllers
 
         // POST: api/EkstraAddresses
         [ResponseType(typeof(EkstraAddresse))]
-        public IHttpActionResult PostEkstraAddresse(EkstraAddresse ekstraAddresse)
+        public async Task<IHttpActionResult> PostEkstraAddresse(EkstraAddresse ekstraAddresse)
         {
             if (!ModelState.IsValid)
             {
@@ -80,23 +93,23 @@ namespace Kartotek.Controllers
             }
 
             db.EkstraAddresses.Add(ekstraAddresse);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = ekstraAddresse.Id }, ekstraAddresse);
         }
 
         // DELETE: api/EkstraAddresses/5
         [ResponseType(typeof(EkstraAddresse))]
-        public IHttpActionResult DeleteEkstraAddresse(int id)
+        public async Task<IHttpActionResult> DeleteEkstraAddresse(int id)
         {
-            EkstraAddresse ekstraAddresse = db.EkstraAddresses.Find(id);
+            EkstraAddresse ekstraAddresse = await db.EkstraAddresses.FindAsync(id);
             if (ekstraAddresse == null)
             {
                 return NotFound();
             }
 
             db.EkstraAddresses.Remove(ekstraAddresse);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
 
             return Ok(ekstraAddresse);
         }

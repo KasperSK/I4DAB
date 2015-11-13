@@ -24,18 +24,16 @@ namespace Kartotek.Controllers
                 select new TelefonnummerDto
                 {
                     Id = t.Id,
-                    Forhold = t.Forhold,
-                    Nummer = t.Nummer,
-                    PersonId = t.PersonID
+                    Nummer = t.Nummer
                 };
             return Tele;
         }
 
         // GET: api/Telefonnummers/5
-        [ResponseType(typeof(TelefonnummerDto))]
+        [ResponseType(typeof(TelefonnummerDetailsDto))]
         public async Task<IHttpActionResult> GetTelefonnummer(int id)
         {
-            var telefonnummer = await db.Telefonnummers.Select(t => new TelefonnummerDto
+            var telefonnummer = await db.Telefonnummers.Select(t => new TelefonnummerDetailsDto
             {
                 Id = t.Id,
                 Forhold = t.Forhold,
@@ -53,7 +51,7 @@ namespace Kartotek.Controllers
 
         // PUT: api/Telefonnummers/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutTelefonnummer(int id, Telefonnummer telefonnummer)
+        public async Task<IHttpActionResult> PutTelefonnummer(int id, Telefonnummer telefonnummer)
         {
             if (!ModelState.IsValid)
             {
@@ -69,7 +67,7 @@ namespace Kartotek.Controllers
 
             try
             {
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -88,7 +86,7 @@ namespace Kartotek.Controllers
 
         // POST: api/Telefonnummers
         [ResponseType(typeof(Telefonnummer))]
-        public IHttpActionResult PostTelefonnummer(Telefonnummer telefonnummer)
+        public async Task<IHttpActionResult> PostTelefonnummer(Telefonnummer telefonnummer)
         {
             if (!ModelState.IsValid)
             {
@@ -96,23 +94,23 @@ namespace Kartotek.Controllers
             }
 
             db.Telefonnummers.Add(telefonnummer);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = telefonnummer.Id }, telefonnummer);
         }
 
         // DELETE: api/Telefonnummers/5
         [ResponseType(typeof(Telefonnummer))]
-        public IHttpActionResult DeleteTelefonnummer(int id)
+        public async Task<IHttpActionResult> DeleteTelefonnummer(int id)
         {
-            Telefonnummer telefonnummer = db.Telefonnummers.Find(id);
+            Telefonnummer telefonnummer = await db.Telefonnummers.FindAsync(id);
             if (telefonnummer == null)
             {
                 return NotFound();
             }
 
             db.Telefonnummers.Remove(telefonnummer);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
 
             return Ok(telefonnummer);
         }

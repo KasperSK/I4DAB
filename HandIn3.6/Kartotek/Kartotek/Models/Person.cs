@@ -62,8 +62,7 @@ namespace Kartotek.Models
 
         public int? FolkeregisterId { get; set; }
 
-        public string Vejnavn { get; set; }
-
-        public List<int> TlfList { get; set; } = new List<int>(); 
+        public List<int> TlfIdList { get; set; } = new List<int>(); 
+        public List<int> AddrIdList { get; set; } = new List<int>(); 
     }
 }

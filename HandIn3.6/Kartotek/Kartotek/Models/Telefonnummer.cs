@@ -27,6 +27,14 @@ namespace Kartotek.Models
     public class TelefonnummerDto
     {
         public int Id { get; set; }
+
+        public int Nummer { get; set; }
+
+    }
+
+    public class TelefonnummerDetailsDto
+    {
+        public int Id { get; set; }
         public string Forhold { get; set; }
         public int Nummer { get; set; }
         public int? PersonId { get; set; }

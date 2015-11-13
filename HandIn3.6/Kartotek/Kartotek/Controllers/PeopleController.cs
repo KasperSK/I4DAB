@@ -41,12 +41,12 @@ namespace Kartotek.Controllers
                         ForNavn = b.Fornavn,
                         MellemNavn = b.Mellemnavn,
                         EfterNavn = b.Efternavn,
-                        Vejnavn = b.Addresse.Vejnavn,
                         Forhold = b.Forhold,
                         FolkeregisterId = b.FolkeAID,
                     }).SingleOrDefaultAsync(b => b.Id == id);
-            var tele = await db.People.Include(b => b.Telefonnummers).SingleOrDefaultAsync(b => b.Id == id);
-            tele.Telefonnummers.ForEach(n => person.TlfList.Add(n.Nummer));
+            var tele = await db.People.Include(b => b.Telefonnummers).Include(b => b.EkstraAddresses).SingleOrDefaultAsync(b => b.Id == id);
+            tele.Telefonnummers.ForEach(n => person.TlfIdList.Add(n.Id));
+            tele.EkstraAddresses.ForEach(a => person.AddrIdList.Add(a.Id));
             if (person == null)
             {
                 return NotFound();
@@ -57,7 +57,7 @@ namespace Kartotek.Controllers
 
         // PUT: api/People/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutPerson(int id, Person person)
+        public async Task<IHttpActionResult> PutPerson(int id, Person person)
         {
             if (!ModelState.IsValid)
             {
@@ -73,7 +73,7 @@ namespace Kartotek.Controllers
 
             try
             {
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -92,7 +92,7 @@ namespace Kartotek.Controllers
 
         // POST: api/People
         [ResponseType(typeof(Person))]
-        public IHttpActionResult PostPerson(Person person)
+        public async Task<IHttpActionResult> PostPerson(Person person)
         {
             if (!ModelState.IsValid)
             {
@@ -100,23 +100,23 @@ namespace Kartotek.Controllers
             }
 
             db.People.Add(person);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = person.Id }, person);
         }
 
         // DELETE: api/People/5
         [ResponseType(typeof(Person))]
-        public IHttpActionResult DeletePerson(int id)
+        public async Task<IHttpActionResult> DeletePerson(int id)
         {
-            Person person = db.People.Find(id);
+            Person person = await db.People.FindAsync(id);
             if (person == null)
             {
                 return NotFound();
             }
 
             db.People.Remove(person);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
 
             return Ok(person);
         }

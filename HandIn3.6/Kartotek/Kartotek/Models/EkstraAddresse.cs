@@ -23,4 +23,24 @@ namespace Kartotek.Models
 
         public virtual Person Person { get; set; }
     }
+
+    public class EkstraAddresseDto
+    {
+        public int Id { get; set; }
+
+        public int PersonID { get; set; }
+
+        public int AddresseID { get; set; }
+    }
+
+    public class EkstraAddresseDetail
+    {
+        public int Id { get; set; }
+
+        public int PersonID { get; set; }
+
+        public int AddresseID { get; set; }
+
+        public string Forhold { get; set; }
+    }
 }
