@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="4b694c68-d7bb-4af4-a347-ef1115766bc2" name="GDL" linkedPackageId="9a777583-3cf0-4c6b-9daf-19063caf5493" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="b803b045-34ce-4db1-bd17-114163230db2">
+      <profileInstance Id="b85b56ec-71d1-4ee9-9ef1-162e8067004a" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="ce9cb0cd-c490-44f2-b305-2b3f4598702a">
+      <profileInstance Id="f409024f-8ce2-40ec-a5b4-2ed8ccc6d337" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <logicalClassDesignerModelHasPackages>
+      <package Id="06e0cc9d-5a7a-4325-99bf-051a85edb5eb" name="GDL">
+        <elementDefinition Id="318160a9-71f9-4492-bc5e-e93a123acfd3" />
+        <profileInstances>
+          <packageHasProfileInstances Id="dbd4de1a-3f40-4c8d-b629-e7359f0af610">
+            <profileInstance Id="047b20ad-dfec-4218-a001-d9152e0b21c0" name="TextTemplateBindings">
+              <elementDefinition Id="ae50a748-2ee6-4c40-b0e2-bd6e797b0593" />
+            </profileInstance>
+            <elementDefinition Id="39491518-8125-4679-9107-ac0c9ffd8902" />
+          </packageHasProfileInstances>
+        </profileInstances>
+        <packagedElements>
+          <packageHasNamedElement>
+            <class Id="479839bd-bc45-4641-8bc3-9c8de624c3b8" name="GDLJsonCharacteristic" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="53277701-e574-4573-bcbb-c2f26b822dfb" />
+              <targetEnds>
+                <association Id="9b2b255a-e91c-4ec4-9835-2d5e178a42dc" isDerived="false" sourceEndRoleName="GDLJsonCharacteristic" targetEndRoleName="GDLJsonAppartmentCharacteristic" isLeaf="false" isAbstract="false">
+                  <classMoniker Id="6b79a064-4dc4-4be2-937d-b73142593af0" LastKnownName="GDLJsonAppartmentCharacteristic" />
+                  <relationshipOwnedElementsInternal>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="98a605c8-f46d-4f41-967b-649a4e8eecaf" name="GDLJsonCharacteristic" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                        <elementDefinition Id="4f8a9a2c-4028-4a1c-8893-3004fa551a1a" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="a5da9097-bba8-440e-9f96-6148c7105005" name="GDLJsonAppartmentCharacteristic" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                        <lowerValueInternal>
+                          <literalString Id="1fcddba5-09f1-48f3-b601-0cf8a0ce17a6" name="Lower" value="*">
+                            <elementDefinition Id="f5fbde85-4fd0-4d4a-a24a-f86ee6908ef3" />
+                          </literalString>
+                        </lowerValueInternal>
+                        <upperValueInternal>
+                          <literalString Id="83004604-60d6-4e21-a600-3f99f5df0a9b" name="Upper" value="*">
+                            <elementDefinition Id="ca0c10b5-5acb-44ec-9403-c1f5c9e11427" />
+                          </literalString>
+                        </upperValueInternal>
+                        <elementDefinition Id="a0c5135a-452f-4855-bcff-2492500c42ea" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                  </relationshipOwnedElementsInternal>
+                  <appliedStereotypesInternal>
+                    <stereotypeInstance Id="51ca6aea-37b2-46dc-8c1e-26d184364280" name="TextTemplateBindings" profile="TextTemplateBindings">
+                      <elementDefinition Id="8eed70ea-6d16-4976-bb41-5a428b518e9c" />
+                      <propertyInstances>
+                        <stereotypeInstanceHasPropertyInstances Id="13bb3021-f695-4ce9-b1e4-d289a1c00555">
+                          <propertyInstance Id="2c232264-29a0-4d98-a03e-d16c0e4968a4" name="Alias">
+                            <elementDefinition Id="1a4551b1-3f02-4e3c-86ad-46eaa84e57ae" />
+                          </propertyInstance>
+                          <elementDefinition Id="949caa88-90c5-4671-b5e3-7408fc614a10" />
+                        </stereotypeInstanceHasPropertyInstances>
+                        <stereotypeInstanceHasPropertyInstances Id="e56f7e1f-0b81-43a4-b9a9-b1523598e41e">
+                          <propertyInstance Id="2d875af4-594d-4bb9-8b5f-f0b8b1cd86dd" name="TemplateFilePath">
+                            <elementDefinition Id="38418786-389f-4e69-be7d-a59b13f7b3c2" />
+                          </propertyInstance>
+                          <elementDefinition Id="74906be2-c2dc-4aac-8a50-de2b0f337f12" />
+                        </stereotypeInstanceHasPropertyInstances>
+                        <stereotypeInstanceHasPropertyInstances Id="2fc57330-a8f5-4607-abef-7a0142f2d9f5">
+                          <propertyInstance Id="979a383e-60b6-4352-bf92-873d3fdd18ff" name="ProjectPath">
+                            <elementDefinition Id="84a66588-0fe5-4f0d-a2a4-3b90b854cf2f" />
+                          </propertyInstance>
+                          <elementDefinition Id="db61992b-0821-4912-a601-4071451985f4" />
+                        </stereotypeInstanceHasPropertyInstances>
+                        <stereotypeInstanceHasPropertyInstances Id="55ab71b2-699a-45ec-83fc-c734785e7c2c">
+                          <propertyInstance Id="a75e8335-b8f7-4829-91c6-d449110ba955" name="TargetDirectory">
+                            <elementDefinition Id="6cf30954-34b3-4e20-abcd-9dabac3ae8cc" />
+                          </propertyInstance>
+                          <elementDefinition Id="0be86f84-d5c6-4284-9bb2-9342891a362e" />
+                        </stereotypeInstanceHasPropertyInstances>
+                        <stereotypeInstanceHasPropertyInstances Id="047f5406-8c1c-4d5c-b10d-954cff05eca3">
+                          <propertyInstance Id="83acd224-b191-4ce6-adad-e3b089eb52e4" name="TargetName">
+                            <elementDefinition Id="337d9c83-9f4b-48f6-a5bb-e155863bbb35" />
+                          </propertyInstance>
+                          <elementDefinition Id="74b412de-8f78-4c90-a744-248f47e1b2b0" />
+                        </stereotypeInstanceHasPropertyInstances>
+                        <stereotypeInstanceHasPropertyInstances Id="8e0a61dc-9e58-4610-bb07-1c0cc7f4b6e3">
+                          <propertyInstance Id="4864107f-4cea-4d13-a810-07784afe0cdf" name="Overwrite">
+                            <elementDefinition Id="069158da-4161-45fe-b212-5ba30b2576ee" />
+                          </propertyInstance>
+                          <elementDefinition Id="8add532e-ac2f-4cb9-8275-9d8d7d46b5a6" />
+                        </stereotypeInstanceHasPropertyInstances>
+                        <stereotypeInstanceHasPropertyInstances Id="e4fc88e4-509d-4a42-b6f9-056951ed1a63">
+                          <propertyInstance Id="1f5f7938-83b2-4daf-8969-c2eecfe77d8c" name="Parameters">
+                            <elementDefinition Id="2544744b-6705-4146-a019-9874ffc43f3d" />
+                          </propertyInstance>
+                          <elementDefinition Id="14bf5968-b204-4510-8a1b-aa885b817051" />
+                        </stereotypeInstanceHasPropertyInstances>
+                      </propertyInstances>
+                    </stereotypeInstance>
+                  </appliedStereotypesInternal>
+                  <elementDefinition Id="318959e8-c2e4-44c7-86f5-cb046a030e52" />
+                </association>
+                <association Id="8ca13418-1dfd-4246-aca4-9a0138284dfd" isDerived="false" sourceEndRoleName="GDLJsonCharacteristic" targetEndRoleName="GDLJsonSensorCharacteristic" isLeaf="false" isAbstract="false">
+                  <classMoniker Id="82a818ba-440f-4172-a469-75ce0db19438" LastKnownName="GDLJsonSensorCharacteristic" />
+                  <relationshipOwnedElementsInternal>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="804cfce0-da6e-4aed-85b6-ea2563833a0a" name="GDLJsonCharacteristic" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                        <elementDefinition Id="6e53e30b-4b74-43f4-8801-552a60264515" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="38edef22-a7e6-4b89-a9b7-dcf3d50d2597" name="GDLJsonSensorCharacteristic" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                        <lowerValueInternal>
+                          <literalString Id="b27d8b06-5dd4-400e-9fcc-9cc647f20796" name="Lower" value="*">
+                            <elementDefinition Id="76ce2f13-f724-4143-ba81-432be8160948" />
+                          </literalString>
+                        </lowerValueInternal>
+                        <upperValueInternal>
+                          <literalString Id="32b980a6-7503-4f99-ab30-9e4d181fbfa0" name="Upper" value="*">
+                            <elementDefinition Id="cf01eff8-7d06-42d0-bad4-3f603ce5bc51" />
+                          </literalString>
+                        </upperValueInternal>
+                        <elementDefinition Id="c9213691-b81a-405b-b99f-9146b15fcb1c" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                  </relationshipOwnedElementsInternal>
+                  <elementDefinition Id="7aaf60f7-853c-44de-ad66-02fb8c4f9769" />
+                </association>
+              </targetEnds>
+              <ownedAttributesInternal>
+                <property Id="9f81de9a-e9ca-4d3c-b9af-9cb6d58327ad" name="timestamp" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="7eb83f25-ccee-4ad1-9e21-9d8c31578f72" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="0b0c28f2-0ee3-4cfb-b3cb-0bd6d506fdb2" LastKnownName="DateTime" />
+                  </type_NamedElement>
+                </property>
+                <property Id="82d5013e-94c3-428b-bfb1-d4c21cd13743" name="sensorCharacteristic" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="d99938db-5eab-4203-b9fb-3100ef854271" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="eae8bc00-4d6b-4c21-8237-2dd6cbcfd670" LastKnownName="List&lt;GDLJsonSensorCharacteristic&gt;" />
+                  </type_NamedElement>
+                </property>
+                <property Id="627db2a6-a514-4e07-895e-80851bdd5be0" name="appartmentCharacteristic" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="5046ea52-05cb-4181-a725-df6970115fa8" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="f4d5bb6a-0b8a-4b50-a03c-b49e09c48ae1" LastKnownName="List&lt;GDLJsonAppartmentCharacteristic&gt;" />
+                  </type_NamedElement>
+                </property>
+                <property Id="2c90dd32-9920-497e-a6c3-e4d71a28b957" name="value" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="2c9cad51-0bc6-4502-a9ff-68106dd902e0" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="1ca4c31f-2e9c-4d31-888c-566c13df8914" LastKnownName="int" />
+                  </type_NamedElement>
+                </property>
+              </ownedAttributesInternal>
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="82a818ba-440f-4172-a469-75ce0db19438" name="GDLJsonSensorCharacteristic" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="1205a914-715c-487a-b8bc-e59f88375dc4" />
+              <ownedAttributesInternal>
+                <property Id="9b0c7551-1f52-4504-a01a-69b198e6dbd2" name="sensorId" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="43abb258-32cc-4d91-a545-9c5a9547895c" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="d5c75339-ef7c-4ec3-841d-5d7ba258a0b1" LastKnownName="int" />
+                  </type_NamedElement>
+                </property>
+                <property Id="2f80a621-e385-4396-adf5-a4459a285f00" name="description" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="7bc6399e-5867-4c24-aac8-5ef0cc94515e" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="abf34f2b-0699-46a4-a337-b4896bd29483" LastKnownName="string" />
+                  </type_NamedElement>
+                </property>
+                <property Id="9e844a61-77de-422b-9c9b-e0f098e427cb" name="unit" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="667b47fb-81e9-4c1a-b8e5-b7abd2ec1830" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="abf34f2b-0699-46a4-a337-b4896bd29483" LastKnownName="string" />
+                  </type_NamedElement>
+                </property>
+                <property Id="8d507240-56fb-43b2-a2bc-370d193a7085" name="externalRef" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="6216d259-f470-4b34-bd00-6b9659f034dd" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="abf34f2b-0699-46a4-a337-b4896bd29483" LastKnownName="string" />
+                  </type_NamedElement>
+                </property>
+                <property Id="0609e2c6-8194-4dfc-babf-aa8f9ef58d09" name="calibrationEquation" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="2c723dc6-b27e-4a20-a3f4-bad266118ae6" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="abf34f2b-0699-46a4-a337-b4896bd29483" LastKnownName="string" />
+                  </type_NamedElement>
+                </property>
+                <property Id="a98b637a-1cb6-4139-81a4-afd3ff16acbb" name="calibrationCoeff" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="9f06eff9-98f9-4abd-99e1-ebaaaf5f0a16" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="abf34f2b-0699-46a4-a337-b4896bd29483" LastKnownName="string" />
+                  </type_NamedElement>
+                </property>
+                <property Id="0d681497-e2b3-4b31-b92b-9ac3be2d24c1" name="calibrationDate" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="5ed44961-541a-43a5-bbf1-23deeb739b34" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="abf34f2b-0699-46a4-a337-b4896bd29483" LastKnownName="string" />
+                  </type_NamedElement>
+                </property>
+              </ownedAttributesInternal>
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="6b79a064-4dc4-4be2-937d-b73142593af0" name="GDLJsonAppartmentCharacteristic" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="37605402-2763-4130-ab29-f54a8d7d6b03" />
+              <ownedAttributesInternal>
+                <property Id="0889dae5-32e1-4dbb-8aa3-20d867facedf" name="appartmentId" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="4d97e0de-af9f-4c87-b917-d2186bdb1941" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="d5c75339-ef7c-4ec3-841d-5d7ba258a0b1" LastKnownName="int" />
+                  </type_NamedElement>
+                </property>
+                <property Id="fbd51c16-2f01-4a05-a82b-fab73d1a4dbc" name="floor" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="23cd0b25-f751-462c-b1c1-4ba1fdcdd31b" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="d5c75339-ef7c-4ec3-841d-5d7ba258a0b1" LastKnownName="int" />
+                  </type_NamedElement>
+                </property>
+                <property Id="0e098eaf-c4bb-4ed5-aa40-866aad68576b" name="no" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="c291f828-335f-49e2-9c2b-15fd4231cb3f" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="d5c75339-ef7c-4ec3-841d-5d7ba258a0b1" LastKnownName="int" />
+                  </type_NamedElement>
+                </property>
+                <property Id="b70c0ab3-8c63-4117-8ac4-5d97886471fb" name="size" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="9a7c4a63-d116-4744-80d6-6f6987e2c954" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="1dfd98ad-2c27-41e5-b999-3d975ce87227" LastKnownName="float" />
+                  </type_NamedElement>
+                </property>
+              </ownedAttributesInternal>
+            </class>
+          </packageHasNamedElement>
+        </packagedElements>
+      </package>
+    </logicalClassDesignerModelHasPackages>
+    <packageHasNamedElement>
+      <referencedType Id="0b0c28f2-0ee3-4cfb-b3cb-0bd6d506fdb2" name="DateTime" isAbstract="false" isLeaf="false" cachedFullName="DateTime">
+        <elementDefinition Id="93370d09-a1be-48c3-b137-9d85e7490b41" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="eae8bc00-4d6b-4c21-8237-2dd6cbcfd670" name="List&lt;GDLJsonSensorCharacteristic&gt;" isAbstract="false" isLeaf="false" cachedFullName="List&lt;GDLJsonSensorCharacteristic&gt;">
+        <elementDefinition Id="cbff8c63-5190-4d4e-9032-67b25ca0915f" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="f4d5bb6a-0b8a-4b50-a03c-b49e09c48ae1" name="List&lt;GDLJsonAppartmentCharacteristic&gt;" isAbstract="false" isLeaf="false" cachedFullName="List&lt;GDLJsonAppartmentCharacteristic&gt;">
+        <elementDefinition Id="538db62b-1e54-4de4-b7a7-a071f0bc4237" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="d5c75339-ef7c-4ec3-841d-5d7ba258a0b1" name="int" isAbstract="false" isLeaf="false" cachedFullName="int">
+        <elementDefinition Id="ac3e78f9-568b-4fe0-902a-ed7748409e8a" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="abf34f2b-0699-46a4-a337-b4896bd29483" name="string" isAbstract="false" isLeaf="false" cachedFullName="string">
+        <elementDefinition Id="508937f2-dc03-4f59-9f7f-d24e8af7f45b" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="1ca4c31f-2e9c-4d31-888c-566c13df8914" name="int" isAbstract="false" isLeaf="false" cachedFullName="int">
+        <elementDefinition Id="ac3e78f9-568b-4fe0-902a-ed7748409e8a" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="1dfd98ad-2c27-41e5-b999-3d975ce87227" name="float" isAbstract="false" isLeaf="false" cachedFullName="float">
+        <elementDefinition Id="08718ac4-6331-4fa3-ab1a-bd73b9ccd14a" />
+      </referencedType>
+    </packageHasNamedElement>
+  </packagedElements>
+  <package Id="9a777583-3cf0-4c6b-9daf-19063caf5493" name="ModelingProjectGDL">
+    <elementDefinition Id="1c475234-a7ed-4a45-863e-5eac005214a8" />
+  </package>
+</logicalClassDesignerModel>
