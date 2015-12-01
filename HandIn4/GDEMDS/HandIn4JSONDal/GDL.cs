@@ -26,6 +26,23 @@ namespace HandIn4JSONDal
         public virtual DbSet<GDLAppartmentCharacteristic> Appartments { get; set; }
         public virtual DbSet<GDLSensorCharacteristic> Sensors { get; set; }
 
+        protected override void OnModelCreating(DbModelBuilder builder)
+        {
+            builder.Entity<GDLSensorCharacteristic>().HasKey(q => q.sensorId);
+            builder.Entity<GDLAppartmentCharacteristic>().HasKey(q => q.appartmentId);
+            builder.Entity<GDLMeassurement>().HasKey(q => new {q.appartmentId, q.sensorId});
+
+            //Relationships
+            builder.Entity<GDLMeassurement>()
+                .HasRequired(t => t.Appartment)
+                .WithMany(t => t.Meassurements)
+                .HasForeignKey(t => t.appartmentId);
+
+            builder.Entity<GDLMeassurement>()
+                .HasRequired(t => t.Sensor)
+                .WithMany(t => t.Meassurements)
+                .HasForeignKey(t => t.sensorId);
+        }
     }
 
     //public class MyEntity

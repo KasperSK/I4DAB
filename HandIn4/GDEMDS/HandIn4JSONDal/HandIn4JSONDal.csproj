@@ -58,6 +58,9 @@
     <Compile Include="GDL.cs" />
     <Compile Include="GDLContext.cs" />
     <Compile Include="GDLJsonDal.cs" />
+    <Compile Include="Modelbuilder\GDLAppartmentCharacteristicEntityConfiguration.cs" />
+    <Compile Include="Modelbuilder\GDLMeasurmentsEntityConfiguration.cs" />
+    <Compile Include="Modelbuilder\GDLSensorCharacteristicEntityConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

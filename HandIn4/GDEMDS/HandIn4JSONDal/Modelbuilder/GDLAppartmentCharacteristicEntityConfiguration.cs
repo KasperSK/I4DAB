@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace HandIn4JSONDal.Modelbuilder
             Property(p => p.no).IsRequired();
             Property(p => p.size).IsRequired();
 
-
+            
         }
     }
 }

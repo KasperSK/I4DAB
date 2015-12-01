@@ -25,10 +25,14 @@ namespace GDLProgram
 
                 var Appartment = new GDLAppartmentCharacteristic() { floor = 4, no = 3, size = 42 };
 
-                var Messurment = new GDLMeassurement() { value = 35452, timestamp = DateTime.Now };
+                db.Appartments.Add(Appartment);
+                db.Sensors.Add(sensor);
 
-                Messurment.appartmentCharacteristic.Add(Appartment);
-                Messurment.sensorCharacteristic.Add(sensor);
+                var Messurment = new GDLMeassurement() { value = 35452, timestamp = DateTime.Now , appartmentId = 1, sensorId = 1};
+
+
+                sensor.Meassurements.Add(Messurment);
+                Appartment.Meassurements.Add(Messurment);
 
                 db.Meassurements.Add(Messurment);
 

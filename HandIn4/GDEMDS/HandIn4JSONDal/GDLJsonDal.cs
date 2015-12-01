@@ -13,21 +13,25 @@ namespace HandIn4JSONDal
     */
     public class GDLMeassurement
     {
-        public GDLMeassurement()
-        {
-            sensorCharacteristic = new List<GDLSensorCharacteristic>();
-            appartmentCharacteristic = new List<GDLAppartmentCharacteristic>();
-        }
+        public int sensorId { get; set; }
+
+        public int appartmentId { get; set; }
 
         public DateTime timestamp { get; set; }
-        public virtual ICollection<GDLSensorCharacteristic> sensorCharacteristic { get; set; }
-        public virtual ICollection<GDLAppartmentCharacteristic> appartmentCharacteristic { get; set; }
+       
         public int value { get; set; }
+
+        public GDLAppartmentCharacteristic Appartment { get; set; }
+        public GDLSensorCharacteristic Sensor { get; set; }
     }
 
     public class GDLSensorCharacteristic
     {
-        [Key]
+        public GDLSensorCharacteristic()
+        {
+            Meassurements = new List<GDLMeassurement>();
+        }
+
         public int sensorId { get; set; }
         public string description { get; set; }
         public string unit { get; set; }
@@ -35,16 +39,21 @@ namespace HandIn4JSONDal
         public string calibrationEquation { get; set; }
         public string calibrationCoeff { get; set; }
         public string calibrationDate { get; set; }
-
+        public virtual ICollection<GDLMeassurement> Meassurements { get; set; }
     }
 
     public class GDLAppartmentCharacteristic
     {
-        [Key]
+        public GDLAppartmentCharacteristic()
+        {
+            Meassurements = new List<GDLMeassurement>();
+        }
+
         public int appartmentId { get; set; }
         public int floor { get; set; }
         public int no { get; set; }
         public float size { get; set; }
+        public virtual ICollection<GDLMeassurement> Meassurements { get; set; }
     }
 
 }
