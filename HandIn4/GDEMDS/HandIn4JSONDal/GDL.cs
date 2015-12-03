@@ -30,7 +30,8 @@ namespace HandIn4JSONDal
         {
             builder.Entity<GDLSensorCharacteristic>().HasKey(q => q.sensorId);
             builder.Entity<GDLAppartmentCharacteristic>().HasKey(q => q.appartmentId);
-            builder.Entity<GDLMeassurement>().HasKey(q => new {q.appartmentId, q.sensorId});
+            builder.Entity<GDLMeassurement>().HasKey(q => q.meassurementId);
+             //   .HasKey(q => new {q.appartmentId, q.sensorId});
 
             //Relationships
             builder.Entity<GDLMeassurement>()
